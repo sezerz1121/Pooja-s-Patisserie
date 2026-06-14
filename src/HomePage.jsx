@@ -405,7 +405,7 @@ export default function HomePage() {
       <section className="menu" id="menu">
         <SectionHeading tag="today's lineup" title="Our" accent="Signature Cakes">Every cake is custom-built around your event. These crowd favourites are a delicious place to begin.</SectionHeading>
         <div className="card-grid stagger-grid">{cakes.map((cake) => <article className={`cake-card${selectedCake === cake.name ? " is-selected" : ""}`} key={cake.name}><div className="card-image"><img src={cake.image} alt={cake.alt} /></div><div className="card-body"><span className="script">{cake.category}</span><h3>{cake.name}</h3><p>{cake.description}</p><div className="price-row"><strong>{selectedCake === cake.name ? "Selected" : "Custom quote"}</strong><button type="button" onClick={() => selectCake(cake.name)} aria-label={`Select ${cake.name}`}>{selectedCake === cake.name ? "✓" : "+"}</button></div></div></article>)}</div>
-        <div className="center reveal-up"><a className="button" href={orderUrl}>Request a Quote</a></div>
+        <div className="center reveal-up"><a className="button" onClick={handleOrder}>Request a Quote</a></div>
       </section>
 
       {/* <Divider /> */}

@@ -10,24 +10,24 @@ const orderUrl = "/order";
 const cakes = [
   {
     category: "crowd favourite",
-    name: "Chocolate Drip Cake",
-    description: "Rich chocolate sponge, ganache drip, topped with macarons and whipped rosettes.",
-    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=85",
-    alt: "Chocolate drip cake with macarons",
+    name: "Red Velvet Cake",
+    description: "Velvety red sponge layered with rich cream cheese frosting — a timeless crowd-pleaser for any celebration.",
+    image: "https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?auto=format&fit=crop&w=700&q=85",
+    alt: "Sliced red velvet cake with cream cheese frosting",
   },
   {
     category: "classic",
-    name: "Rosette Buttercream Cake",
-    description: "Hand-piped buttercream rosettes in your choice of colour, for any celebration.",
-    image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=700&q=85",
-    alt: "Pink rosette buttercream cake",
+    name: "Vanilla Cake",
+    description: "Scratch-baked vanilla sponge, light and moist, dressed however you like — simple, elegant, and always a hit.",
+    image: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=700&q=85",
+    alt: "Classic vanilla layer cake with white frosting",
   },
   {
     category: "showstopper",
-    name: "Custom Celebration Cake",
-    description: "Fully themed designs, from gold drips to character toppers, built around your party.",
-    image: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&w=700&q=85",
-    alt: "Custom celebration cake",
+    name: "Chocolate Fudge Cake",
+    description: "Dense, fudgy chocolate layers stacked with silky ganache — rich, indulgent, and impossible to forget.",
+    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=85",
+    alt: "Chocolate fudge cake with ganache drip",
   },
   {
     category: "add-on",
@@ -39,19 +39,39 @@ const cakes = [
 ];
 
 const flavours = [
-  ["Butterscotch Delight", "A rich, buttery flavour with a hint of caramelised sweetness."],
-  ["Gulab Jamun Charm", "A soft, syrup-kissed sponge inspired by the classic Indian dessert."],
-  ["Pistachio Royale", "Earthy pistachios create a luxurious, aromatic cake experience."],
-  ["Rasmalai Bliss", "Delicate saffron, cardamom, and creamy milk notes in every bite."],
+  ["Banana", "Sweet, natural banana flavour baked right into every layer."],
+  ["Black Forest", "Dark chocolate sponge with cherries and whipped cream — a classic."],
+  ["Blueberry", "Bright, juicy blueberry notes in a light, fruity sponge."],
+  ["Salted Caramel", "Rich caramel balanced perfectly with a hint of sea salt."],
+  ["Chocolate", "Deep, pure chocolate flavour in a moist, crowd-pleasing sponge."],
+  ["Coconut", "Tropical and fragrant, with a soft, tender crumb."],
+  ["Coffee", "Bold espresso notes in a rich, aromatic sponge."],
+  ["Hazelnut", "Warm, nutty hazelnut woven through every bite."],
+  ["Lemon", "Bright and zesty, with a refreshing citrus lift."],
+  ["Mango", "Sweet, ripe mango in a sunshine-yellow sponge."],
+  ["Matcha Green Tea", "Earthy, aromatic matcha for a subtly sophisticated flavour."],
+  ["Oreo", "Cookies-and-cream goodness baked into a fun, crowd-pleasing sponge."],
+  ["Pistachio", "Earthy pistachios create a luxurious, aromatic cake experience."],
+  ["Raspberry", "Tart and vibrant raspberry for a fresh, fruity sponge."],
+  ["Red Velvet", "Classic velvety sponge with that signature hint of cocoa."],
+  ["Strawberry", "Fresh, sun-ripened strawberry flavour throughout."],
+  ["Vanilla", "Pure, fragrant vanilla — simple, elegant, and endlessly versatile."],
 ];
 
 const fillings = [
-  ["Caramel Dream", "Sweet, silky caramel that adds a luscious depth of flavour."],
-  ["Cream Cheese Cloud", "Tangy, rich, and creamy enough to balance every sweet sponge."],
-  ["Lemon Curd Bliss", "Bright and refreshing with a lively burst of citrus."],
-  ["Oreo Crunch", "Creamy chocolate filling with crunchy Oreo cookie pieces."],
-  ["Raspberry Reverie", "A fresh compote with the perfect sweet and tart balance."],
-  ["Lush Strawberry", "Fresh strawberries in a light syrup for natural berry flavour."],
+  ["Buttercream Design", "Classic, silky buttercream piped or smoothed for a timeless finish."],
+  ["Chocolate Decorations", "Rich chocolate shards, curls, or drizzle for an indulgent look."],
+  ["Edible Photo Prints", "A favourite photo transferred onto your cake in full colour."],
+  ["Flowers", "Fresh or sugar-craft blooms for an elegant, garden-party feel."],
+  ["Fondant Figures", "Hand-sculpted fondant characters tailored to your theme."],
+  ["Fresh Fruits", "Seasonal fruit arranged for a light, vibrant finish."],
+  ["Edible Glitter", "A sparkly, eye-catching shimmer over your cake's surface."],
+  ["Edible Gold Leaf", "Luxurious hand-applied gold leaf for a showstopper finish."],
+  ["Macarons", "Delicate French macarons stacked or scattered on top."],
+  ["Decorative Ribbons", "Satin or fondant ribbons for a polished, gift-wrapped look."],
+  ["Sprinkles", "Playful, colourful sprinkles — perfect for birthdays and kids' cakes."],
+  ["Themed Decorations", "Custom decorations built around your party's colour and theme."],
+  ["Cake Topper", "A personalised topper — names, ages, or figurines — to crown your cake."],
 ];
 
 const services = [
@@ -389,13 +409,13 @@ export default function HomePage() {
 
       {/* <Divider /> */}
       <section className="flavours" id="flavours">
-        <SectionHeading tag="build your cake" title="Fusion" accent="Flavours & Fillings">Pick a sponge, then layer in a filling. Every combination is scratch-baked and never premixed.</SectionHeading>
+        <SectionHeading tag="build your cake" title="Flavours &amp;" accent="Decorations">Pick a sponge flavour, then choose your decoration style. Every cake is scratch-baked and built to order.</SectionHeading>
         <div className="flavour-grid stagger-grid">
           <div><h3 className="script">Cake Flavours</h3>{flavours.map(([name, text]) => <button type="button" className={`flavour-item${selectedFlavour === name ? " is-selected" : ""}`} key={name} onClick={() => setSelectedFlavour(name)} aria-pressed={selectedFlavour === name}><span><h4>{name}</h4><p>{text}</p></span><b>{selectedFlavour === name ? "✓" : "+"}</b></button>)}</div>
-          <div><h3 className="script">Cake Fillings</h3>{fillings.map(([name, text]) => <button type="button" className={`flavour-item${selectedFilling === name ? " is-selected" : ""}`} key={name} onClick={() => setSelectedFilling(name)} aria-pressed={selectedFilling === name}><span><h4>{name}</h4><p>{text}</p></span><b>{selectedFilling === name ? "✓" : "+"}</b></button>)}</div>
+          <div><h3 className="script">Decoration Style</h3>{fillings.map(([name, text]) => <button type="button" className={`flavour-item${selectedFilling === name ? " is-selected" : ""}`} key={name} onClick={() => setSelectedFilling(name)} aria-pressed={selectedFilling === name}><span><h4>{name}</h4><p>{text}</p></span><b>{selectedFilling === name ? "✓" : "+"}</b></button>)}</div>
         </div>
         <div className="cake-builder reveal-up" aria-live="polite">
-          <div><span className="script">your cake so far</span><h3>{selectedCake || "Choose a signature cake"}</h3><p>{selectedFlavour || "Choose a flavour"} <strong>+</strong> {selectedFilling || "choose a filling"}</p></div>
+          <div><span className="script">your cake so far</span><h3>{selectedCake || "Choose a signature cake"}</h3><p>{selectedFlavour || "Choose a flavour"} <strong>+</strong> {selectedFilling || "choose a decoration"}</p></div>
           <a className={`button${hasSelection ? "" : " is-disabled"}`} href={enquiryUrl} aria-disabled={!hasSelection} onClick={(event) => { if (!hasSelection) event.preventDefault(); }}>Enquire About This Cake</a>
         </div>
       </section>

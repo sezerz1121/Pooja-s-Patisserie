@@ -90,13 +90,15 @@ function Divider({ colour = "#ffffff", flip = false }) {
   );
 }
 
-const [searchParams] = useSearchParams();
+
+
 function readInitialProducts(searchParams) {
+  console.log(searchParams)
   const products = [];
 
   const cake = searchParams.get("cake");
   const flavour = searchParams.get("flavour");
-  const filling = searchParams.get("filling");
+  const decoration = searchParams.get("decoration");
 
   if (cake) {
     products.push({
@@ -114,11 +116,11 @@ function readInitialProducts(searchParams) {
     });
   }
 
-  if (filling) {
+  if (decoration) {
     products.push({
-      id: "filling",
-      label: "Filling",
-      value: filling,
+      id: "decoration",
+      label: "Decoration",
+      value: decoration,
     });
   }
 
@@ -126,11 +128,14 @@ function readInitialProducts(searchParams) {
 }
 
 export default function QuotePage() {
+  const [searchParams] = useSearchParams();
   const navigate = useNavigate();
   const pageRef = useRef(null);
   const fileInputRef = useRef(null);
 
-  const [products, setProducts] = useState(readInitialProducts);
+  const [products, setProducts] = useState(() =>
+  readInitialProducts(searchParams)
+);
   const [fileName, setFileName] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
@@ -153,18 +158,28 @@ export default function QuotePage() {
   });
 
   useEffect(() => {
-    // If a cake / flavour / filling came in from the home page, pre-fill the
-    // matching select fields too, so the form and the chip list stay in sync.
-    const params = new URLSearchParams(window.location.search);
-    const cake = params.get("cake");
-    const flavour = params.get("flavour");
+  const cake = searchParams.get("cake");
+  const flavour = searchParams.get("flavour");
+  const decoration = searchParams.get("decoration");
 
-    setForm((prev) => ({
-      ...prev,
-      cakeType: cake && cakeTypes.includes(cake) ? cake : prev.cakeType,
-      flavour: flavour && flavourOptions.includes(flavour) ? flavour : prev.flavour,
-    }));
-  }, []);
+  setForm((prev) => ({
+    ...prev,
+    cakeType:
+      cake && cakeTypes.includes(cake)
+        ? cake
+        : prev.cakeType,
+
+    flavour:
+      flavour && flavourOptions.includes(flavour)
+        ? flavour
+        : prev.flavour,
+
+    decoration:
+      decoration && decorationOptions.includes(decoration)
+        ? decoration
+        : prev.decoration,
+  }));
+}, [searchParams]);
 
   const updateField = (field) => (event) => {
     setForm((prev) => ({ ...prev, [field]: event.target.value }));

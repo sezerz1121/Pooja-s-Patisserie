@@ -58,7 +58,7 @@ const flavours = [
   ["Vanilla", "Pure, fragrant vanilla — simple, elegant, and endlessly versatile."],
 ];
 
-const fillings = [
+const decoration = [
   ["Buttercream Design", "Classic, silky buttercream piped or smoothed for a timeless finish."],
   ["Chocolate Decorations", "Rich chocolate shards, curls, or drizzle for an indulgent look."],
   ["Edible Photo Prints", "A favourite photo transferred onto your cake in full colour."],
@@ -173,15 +173,15 @@ export default function HomePage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedCake, setSelectedCake] = useState("");
   const [selectedFlavour, setSelectedFlavour] = useState("");
-  const [selectedFilling, setSelectedFilling] = useState("");
+  const [selectedDecoration, setSelectedDecoration] = useState("");
 
   const closeMenu = () => setMenuOpen(false);
-  const hasSelection = selectedCake || selectedFlavour || selectedFilling;
+  const hasSelection = selectedCake || selectedFlavour || selectedDecoration;
 
   // Selections made here are passed to the quote page via query params, so
   // they show up pre-filled in "Requested products" and the matching form
   // fields (cake type / main flavour) on /order.
-  const enquiryUrl = `${orderUrl}?cake=${encodeURIComponent(selectedCake)}&flavour=${encodeURIComponent(selectedFlavour)}&filling=${encodeURIComponent(selectedFilling)}`;
+  const enquiryUrl = `${orderUrl}?cake=${encodeURIComponent(selectedCake)}&flavour=${encodeURIComponent(selectedFlavour)}&decoration=${encodeURIComponent(selectedDecoration)}`;
 
   const handleOrder = () => {
     navigate(enquiryUrl);
@@ -412,10 +412,10 @@ export default function HomePage() {
         <SectionHeading tag="build your cake" title="Flavours &amp;" accent="Decorations">Pick a sponge flavour, then choose your decoration style. Every cake is scratch-baked and built to order.</SectionHeading>
         <div className="flavour-grid stagger-grid">
           <div><h3 className="script">Cake Flavours</h3>{flavours.map(([name, text]) => <button type="button" className={`flavour-item${selectedFlavour === name ? " is-selected" : ""}`} key={name} onClick={() => setSelectedFlavour(name)} aria-pressed={selectedFlavour === name}><span><h4>{name}</h4><p>{text}</p></span><b>{selectedFlavour === name ? "✓" : "+"}</b></button>)}</div>
-          <div><h3 className="script">Decoration Style</h3>{fillings.map(([name, text]) => <button type="button" className={`flavour-item${selectedFilling === name ? " is-selected" : ""}`} key={name} onClick={() => setSelectedFilling(name)} aria-pressed={selectedFilling === name}><span><h4>{name}</h4><p>{text}</p></span><b>{selectedFilling === name ? "✓" : "+"}</b></button>)}</div>
+          <div><h3 className="script">Decoration Style</h3>{decoration.map(([name, text]) => <button type="button" className={`flavour-item${selectedDecoration === name ? " is-selected" : ""}`} key={name} onClick={() => setSelectedDecoration(name)} aria-pressed={selectedDecoration === name}><span><h4>{name}</h4><p>{text}</p></span><b>{selectedDecoration === name ? "✓" : "+"}</b></button>)}</div>
         </div>
         <div className="cake-builder reveal-up" aria-live="polite">
-          <div><span className="script">your cake so far</span><h3>{selectedCake || "Choose a signature cake"}</h3><p>{selectedFlavour || "Choose a flavour"} <strong>+</strong> {selectedFilling || "choose a decoration"}</p></div>
+          <div><span className="script">your cake so far</span><h3>{selectedCake || "Choose a signature cake"}</h3><p>{selectedFlavour || "Choose a flavour"} <strong>+</strong> {selectedDecoration || "choose a decoration"}</p></div>
           <button
   type="button"
   className={`button${hasSelection ? "" : " is-disabled"}`}

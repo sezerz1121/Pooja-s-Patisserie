@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useSearchParams } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -90,18 +90,38 @@ function Divider({ colour = "#ffffff", flip = false }) {
   );
 }
 
-function readInitialProducts() {
-  if (typeof window === "undefined") return [];
-
-  const params = new URLSearchParams(window.location.search);
-  const cake = params.get("cake");
-  const flavour = params.get("flavour");
-  const filling = params.get("filling");
-
+const [searchParams] = useSearchParams();
+function readInitialProducts(searchParams) {
   const products = [];
-  if (cake) products.push({ id: "cake", label: "Cake", value: cake });
-  if (flavour) products.push({ id: "flavour", label: "Flavour", value: flavour });
-  if (filling) products.push({ id: "filling", label: "Filling", value: filling });
+
+  const cake = searchParams.get("cake");
+  const flavour = searchParams.get("flavour");
+  const filling = searchParams.get("filling");
+
+  if (cake) {
+    products.push({
+      id: "cake",
+      label: "Cake",
+      value: cake,
+    });
+  }
+
+  if (flavour) {
+    products.push({
+      id: "flavour",
+      label: "Flavour",
+      value: flavour,
+    });
+  }
+
+  if (filling) {
+    products.push({
+      id: "filling",
+      label: "Filling",
+      value: filling,
+    });
+  }
+
   return products;
 }
 

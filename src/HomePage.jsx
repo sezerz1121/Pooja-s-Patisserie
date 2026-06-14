@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -145,6 +146,7 @@ function SectionHeading({ tag, title, accent, children }) {
 }
 
 export default function HomePage() {
+  const navigate = useNavigate();
   const pageRef = useRef(null);
   const processRef = useRef(null);
   const mobileMenuRef = useRef(null);
@@ -161,6 +163,9 @@ export default function HomePage() {
   // fields (cake type / main flavour) on /order.
   const enquiryUrl = `${orderUrl}?cake=${encodeURIComponent(selectedCake)}&flavour=${encodeURIComponent(selectedFlavour)}&filling=${encodeURIComponent(selectedFilling)}`;
 
+  const handleOrder = () => {
+    navigate("/order");
+  };
   const selectCake = (cakeName) => {
     setSelectedCake(cakeName);
     document.querySelector("#flavours")?.scrollIntoView({ behavior: "smooth" });
@@ -324,7 +329,7 @@ export default function HomePage() {
         <div className="nav-links">
           <a href="#about">Our Story</a><a href="#services">Services</a><a href="#menu">Menu</a><a href="#process">How it Works</a><a href="#testimonials">Reviews</a>
         </div>
-        <a className="button button--small nav-order" href={orderUrl}>Order Now</a>
+        <a className="button button--small nav-order" onClick={handleOrder}>Order Now</a>
         <button className={`menu-toggle${menuOpen ? " is-open" : ""}`} type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)}>
           <span /><span /><span />
         </button>
@@ -335,7 +340,7 @@ export default function HomePage() {
           <a href="#flavours" onClick={closeMenu}>Build a Cake</a>
           <a href="#process" onClick={closeMenu}>How it Works</a>
           <a href="#testimonials" onClick={closeMenu}>Reviews</a>
-          <a className="button" href={orderUrl} onClick={closeMenu}>Order Now</a>
+          <a className="button" onClick={handleOrder} onClick={closeMenu}>Order Now</a>
         </div>
       </nav>
 

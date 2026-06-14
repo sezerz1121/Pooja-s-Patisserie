@@ -184,7 +184,7 @@ export default function HomePage() {
   const enquiryUrl = `${orderUrl}?cake=${encodeURIComponent(selectedCake)}&flavour=${encodeURIComponent(selectedFlavour)}&filling=${encodeURIComponent(selectedFilling)}`;
 
   const handleOrder = () => {
-    navigate("/order");
+    navigate(enquiryUrl);
   };
   const selectCake = (cakeName) => {
     setSelectedCake(cakeName);
@@ -416,7 +416,14 @@ export default function HomePage() {
         </div>
         <div className="cake-builder reveal-up" aria-live="polite">
           <div><span className="script">your cake so far</span><h3>{selectedCake || "Choose a signature cake"}</h3><p>{selectedFlavour || "Choose a flavour"} <strong>+</strong> {selectedFilling || "choose a decoration"}</p></div>
-          <a className={`button${hasSelection ? "" : " is-disabled"}`} href={enquiryUrl} aria-disabled={!hasSelection} onClick={(event) => { if (!hasSelection) event.preventDefault(); }}>Enquire About This Cake</a>
+          <button
+  type="button"
+  className={`button${hasSelection ? "" : " is-disabled"}`}
+  disabled={!hasSelection}
+  onClick={handleOrder}
+>
+  Enquire About This Cake
+</button>
         </div>
       </section>
 
@@ -442,7 +449,7 @@ export default function HomePage() {
         <div className="review-grid stagger-grid" aria-label="Customer reviews">{reviews.map(([initial, quote, type]) => <article key={quote}><span className="quote-mark">&ldquo;</span><p>{quote}</p><div className="review-person"><span>{initial}</span><div><strong>Google Review</strong><small>{type}</small></div></div></article>)}</div>
       </section>
 
-      <section className="order-section" id="order"><div className="order-banner reveal-up"><div><h2>Got a celebration coming up?</h2><p>Tell us the date, theme, and guest count. We will confirm availability and pricing &mdash; please reach out at least 7&ndash;10 days ahead (longer for weddings).</p></div><a className="button button--light" href={enquiryUrl}>Submit an Enquiry</a></div></section>
+      <section className="order-section" id="order"><div className="order-banner reveal-up"><div><h2>Got a celebration coming up?</h2><p>Tell us the date, theme, and guest count. We will confirm availability and pricing &mdash; please reach out at least 7&ndash;10 days ahead (longer for weddings).</p></div><a className="button button--light" onClick={handleOrder}>Submit an Enquiry</a></div></section>
 
       <footer><div className="footer-grid"><div><h3>Pooja's Patisserie</h3><p>Home-based, family-owned custom bakery serving Katy, Houston, and the surrounding suburbs.</p></div><div><h4>Explore</h4><a href="#about">Our Story</a><a href="#services">Services</a><a href="#menu">Menu</a><a href="#flavours">Flavours</a></div><div><h4>Support</h4><a href={orderUrl}>Custom Orders</a><a href="tel:+18325429686">Call Us</a><a href="mailto:poojas.patisserie9@gmail.com">Email Us</a></div><div><h4>Visit the Kitchen</h4><p>26511 Reflection Sky Ct<br />Katy, TX 77494<br />Mon-Sat: 7am-11pm<br />Sun: 9am-9pm</p></div></div><div className="footer-bottom"><span>&copy; 2026 Pooja's Patisserie.</span><span>Made with butter, sugar, and care.</span></div></footer>
     </div>

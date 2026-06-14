@@ -347,20 +347,21 @@ export default function HomePage() {
       <nav className="site-nav" aria-label="Main navigation">
         <a className="brand" href="#top"><span className="brand-dots" />Pooja's Patisserie</a>
         <div className="nav-links">
-          <a href="#about">Our Story</a><a href="#services">Services</a><a href="#menu">Menu</a><a href="#process">How it Works</a><a href="#testimonials">Reviews</a>
+           <a href="#top">Home</a><a href="#about">Our Story</a><a href="#services">Services</a><a href="#menu">Menu</a><a href="#process">How it Works</a><a href="#testimonials">Reviews</a>
         </div>
         <a className="button button--small nav-order" onClick={handleOrder}>Order Now</a>
         <button className={`menu-toggle${menuOpen ? " is-open" : ""}`} type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)}>
           <span /><span /><span />
         </button>
         <div className="mobile-menu" id="mobile-navigation" ref={mobileMenuRef}>
+          <a href="#top" onClick={closeMenu}>Home</a>
           <a href="#about" onClick={closeMenu}>Our Story</a>
           <a href="#services" onClick={closeMenu}>Services</a>
           <a href="#menu" onClick={closeMenu}>Menu</a>
           <a href="#flavours" onClick={closeMenu}>Build a Cake</a>
           <a href="#process" onClick={closeMenu}>How it Works</a>
           <a href="#testimonials" onClick={closeMenu}>Reviews</a>
-          <a className="button" onClick={handleOrder} onClick={closeMenu}>Order Now</a>
+          <a className="button" onClick={handleOrder}>Order Now</a>
         </div>
       </nav>
 

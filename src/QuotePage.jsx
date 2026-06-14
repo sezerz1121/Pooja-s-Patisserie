@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-
+const orderUrl = "/order";
 const cakeTypes = [
   "Biscoff Cake",
   "Carrot Cake",
@@ -132,10 +132,20 @@ export default function QuotePage() {
   const navigate = useNavigate();
   const pageRef = useRef(null);
   const fileInputRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
+  const enquiryUrl = `${orderUrl}?cake=${encodeURIComponent("")}&flavour=${encodeURIComponent("")}&decoration=${encodeURIComponent("")}`;
 
+  const handleOrder = () => {
+    navigate(enquiryUrl);
+  };
+  const handleHome = () => {
+    navigate('/');
+  };
   const [products, setProducts] = useState(() =>
   readInitialProducts(searchParams)
-);
+  );
   const [fileName, setFileName] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
@@ -179,7 +189,33 @@ export default function QuotePage() {
         ? decoration
         : prev.decoration,
   }));
+ 
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") closeMenu();
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+
 }, [searchParams]);
+  useLayoutEffect(() => {
+    if (!mobileMenuRef.current) return undefined;
+
+    const items = mobileMenuRef.current.querySelectorAll("a");
+    if (menuOpen) {
+      gsap.set(mobileMenuRef.current, { display: "flex" });
+      gsap.fromTo(mobileMenuRef.current, { autoAlpha: 0, y: -16 }, { autoAlpha: 1, y: 0, duration: 0.3, ease: "power2.out" });
+      gsap.fromTo(items, { autoAlpha: 0, x: -18 }, { autoAlpha: 1, x: 0, stagger: 0.06, duration: 0.3, delay: 0.08 });
+    } else {
+      gsap.to(mobileMenuRef.current, {
+        autoAlpha: 0,
+        y: -12,
+        duration: 0.2,
+        ease: "power2.in",
+        onComplete: () => gsap.set(mobileMenuRef.current, { display: "none" }),
+      });
+    }
+  }, [menuOpen]);
 
   const updateField = (field) => (event) => {
     setForm((prev) => ({ ...prev, [field]: event.target.value }));
@@ -245,14 +281,24 @@ export default function QuotePage() {
   return (
     <div className="home-page quote-page" ref={pageRef}>
       <nav className="site-nav" aria-label="Main navigation">
-        <a className="brand" href="/"><span className="brand-dots" />Pooja's Patisserie</a>
+        <a className="brand" href="#top"><span className="brand-dots" />Pooja's Patisserie</a>
         <div className="nav-links">
-          <a href="/#about">Our Story</a>
-          <a href="/#menu">Menu</a>
-          <a href="/#process">How it Works</a>
-          <a href="/#testimonials">Reviews</a>
+           <a onClick={handleHome}>Home</a><a href="#about">Our Story</a><a href="#services">Services</a><a href="#menu">Menu</a><a href="#process">How it Works</a><a href="#testimonials">Reviews</a>
         </div>
-        <a className="button button--small nav-order" href="/#menu">Browse Cakes</a>
+        <a className="button button--small nav-order" onClick={handleOrder}>Order Now</a>
+        <button className={`menu-toggle${menuOpen ? " is-open" : ""}`} type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)}>
+          <span /><span /><span />
+        </button>
+        <div className="mobile-menu" id="mobile-navigation" ref={mobileMenuRef}>
+          <a onClick={handleHome}>Home</a>
+          <a href="#about" onClick={closeMenu}>Our Story</a>
+          <a href="#services" onClick={closeMenu}>Services</a>
+          <a href="#menu" onClick={closeMenu}>Menu</a>
+          <a href="#flavours" onClick={closeMenu}>Build a Cake</a>
+          <a href="#process" onClick={closeMenu}>How it Works</a>
+          <a href="#testimonials" onClick={closeMenu}>Reviews</a>
+          <a className="button" onClick={closeMenu}>Order Now</a>
+        </div>
       </nav>
 
       <header className="quote-hero">

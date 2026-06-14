@@ -127,6 +127,20 @@ function readInitialProducts(searchParams) {
   return products;
 }
 
+
+function useIsDesktop(breakpoint) {
+  var bp = breakpoint || 1024;
+  var [isDesktop, setIsDesktop] = useState(
+    typeof window !== "undefined" ? window.innerWidth > bp : true
+  );
+  useEffect(function() {
+    var mq = window.matchMedia("(min-width: " + (bp + 1) + "px)");
+    var handler = function(e) { setIsDesktop(e.matches); };
+    mq.addEventListener("change", handler);
+    return function() { mq.removeEventListener("change", handler); };
+  }, [bp]);
+  return isDesktop;
+}
 export default function QuotePage() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -134,6 +148,7 @@ export default function QuotePage() {
   const fileInputRef = useRef(null);
   const mobileMenuRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const isDesktop = useIsDesktop();
   const closeMenu = () => setMenuOpen(false);
   const enquiryUrl = `${orderUrl}?cake=${encodeURIComponent("")}&flavour=${encodeURIComponent("")}&decoration=${encodeURIComponent("")}`;
 
@@ -454,13 +469,21 @@ export default function QuotePage() {
                     </label>
                   </div>
                 </div>
+
+                {/* Actions shown at bottom of main column on mobile */}
+                {!isDesktop && (
+                  <div className="form-actions reveal-up">
+                    <button type="button" className="button button--ghost" onClick={handleCancel}>Cancel</button>
+                    <button type="submit" className="button">Submit enquiry</button>
+                  </div>
+                )}
               </div>
 
               <aside className="quote-sidebar">
                 <div className="form-card products-card reveal-up">
                   <h2>Requested products</h2>
                   {products.length === 0 ? (
-                    <p className="empty-products">No products selected</p>
+                    <p className="empty-products">No products selected yet</p>
                   ) : (
                     <ul className="product-list">
                       {products.map((product) => (
@@ -489,10 +512,13 @@ export default function QuotePage() {
                   </p>
                 </div>
 
-                <div className="form-actions">
-                  <button type="button" className="button button--ghost" onClick={handleCancel}>Cancel</button>
-                  <button type="submit" className="button">Submit inquiry</button>
-                </div>
+                {/* Actions shown in sidebar on desktop */}
+                {isDesktop && (
+                  <div className="form-actions reveal-up">
+                    <button type="button" className="button button--ghost" onClick={handleCancel}>Cancel</button>
+                    <button type="submit" className="button">Submit enquiry</button>
+                  </div>
+                )}
               </aside>
             </div>
           </form>

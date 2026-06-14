@@ -382,7 +382,7 @@ export default function HomePage() {
 
       {/* <Divider /> */}
       <section className="about" id="about">
-        <div className="about-photo"><img src="Cake.jpg" alt="Baker decorating a chocolate cake" /><div className="rating-badge"><strong>5.0&#9733;</strong><span>198+ reviews</span></div></div>
+        <div className="about-photo"><img src="Cake.png" alt="Baker decorating a chocolate cake" /><div className="rating-badge"><strong>5.0&#9733;</strong><span>198+ reviews</span></div></div>
         <div className="about-copy"><span className="script section-tag">our little story</span><h2>From software engineer to scratch-made showstoppers.</h2><p>Pooja Naren traded a career in software engineering for a kitchen full of flour, founding Pooja's Patisserie as a home-based, family-owned bakery. What started with cakes for friends and neighbours has grown into a go-to studio for birthdays, baby showers, weddings, and corporate events across Katy, Houston, and the surrounding suburbs.</p><p>Every order is made to order, never pulled from a freezer &mdash; just real butter, real fruit, careful detail work, and a lot of late nights perfecting buttercream.</p><div className="pill-row"><span>Home-based & family-owned</span><span>Made-to-order, scratch-baked</span><span>Eggless options available</span><span>Delivery across Katy & Houston</span></div></div>
       </section>
 

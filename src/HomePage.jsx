@@ -101,7 +101,7 @@ const services = [
     description: "French macarons, cake jars, and specialty sweet treats to round out your dessert table.",
   },
   {
-    icon: "🌶️",
+    icon: "🧁",
     title: "Indian Fusion Desserts",
     description: "Indian-inspired cakes and fusion desserts that bring traditional Indian sweet flavours into Western-style baking.",
   },

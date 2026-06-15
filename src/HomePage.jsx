@@ -38,6 +38,45 @@ const cakes = [
   },
 ];
 
+const galleryCakes = [
+  {
+    title: "Custom rasmalai celebration cake",
+    image: "/CakePort1.png",
+    alt: "Custom cake decorated by Pooja's Patisserie",
+    size: "feature",
+  },
+  {
+    title: "Signature celebration cake",
+    image: "/CakePort3.png",
+    alt: "Finished cake from Pooja's Patisserie",
+    size: "tall",
+  },
+  {
+    title: "Custom birthday cake",
+    image: "/CakePort2.png",
+    alt: "Cake detail from a custom order",
+    size: "wide",
+  },
+  {
+    title: "Clase azul Tequila",
+    image: "/CakePort4.png",
+    alt: "Custom cake work by Pooja's Patisserie",
+    size: "short",
+  },
+  {
+    title: "Special custom cake",
+    image: "/CakePort5.png",
+    alt: "Buttercream cake detail by Pooja's Patisserie",
+    size: "right-tall",
+  },
+  {
+    title: "Dripping cake",
+    image: "/CakePort6.png",
+    alt: "Celebration cake finish by Pooja's Patisserie",
+    size: "compact",
+  },
+];
+
 const flavours = [
   ["Banana", "Sweet, natural banana flavour baked right into every layer."],
   ["Black Forest", "Dark chocolate sponge with cherries and whipped cream — a classic."],
@@ -323,6 +362,7 @@ export default function HomePage() {
         addHover(".cake-card", { y: -13, scale: 1.025, rotate: -1, duration: 0.45, ease: "back.out(2)" }, { y: 0, scale: 1, rotate: 0, duration: 0.5, ease: "elastic.out(1, 0.55)" });
         addHover(".process-card", { y: -10, scale: 1.035, rotate: 1, duration: 0.4, ease: "back.out(2)" }, { y: 0, scale: 1, rotate: 0, duration: 0.55, ease: "elastic.out(1, 0.5)" });
         addHover(".service-card", { y: -10, scale: 1.03, rotate: -1, duration: 0.4, ease: "back.out(2)" }, { y: 0, scale: 1, rotate: 0, duration: 0.5, ease: "elastic.out(1, 0.55)" });
+        addHover(".work-card", { y: -10, scale: 1.02, rotate: -0.8, duration: 0.4, ease: "back.out(2)" }, { y: 0, scale: 1, rotate: 0, duration: 0.5, ease: "elastic.out(1, 0.55)" });
         addHover(".review-grid article", { y: -10, rotate: -1.2, scale: 1.025, duration: 0.4, ease: "back.out(2)" }, { y: 0, rotate: 0, scale: 1, duration: 0.5, ease: "elastic.out(1, 0.6)" });
         addHover(".flavour-item", { x: 9, scale: 1.015, duration: 0.3, ease: "back.out(2)" }, { x: 0, scale: 1, duration: 0.35, ease: "power2.out" });
         addHover(".button", { y: -4, scale: 1.055, duration: 0.3, ease: "back.out(2.5)" }, { y: 0, scale: 1, duration: 0.45, ease: "elastic.out(1, 0.45)" });
@@ -347,7 +387,7 @@ export default function HomePage() {
       <nav className="site-nav" aria-label="Main navigation">
         <a className="brand" href="#top"><span className="brand-dots" />Pooja's Patisserie</a>
         <div className="nav-links">
-           <a href="#top">Home</a><a href="#about">Our Story</a><a href="#services">Services</a><a href="#menu">Menu</a><a href="#process">How it Works</a><a href="#testimonials">Reviews</a>
+           <a href="#top">Home</a><a href="#about">Our Story</a><a href="#services">Services</a><a href="#cake-gallery">Gallery</a><a href="#menu">Menu</a><a href="#process">How it Works</a><a href="#testimonials">Reviews</a>
         </div>
         <a className="button button--small nav-order" onClick={handleOrder}>Order Now</a>
         <button className={`menu-toggle${menuOpen ? " is-open" : ""}`} type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)}>
@@ -357,6 +397,7 @@ export default function HomePage() {
           <a href="#top" onClick={closeMenu}>Home</a>
           <a href="#about" onClick={closeMenu}>Our Story</a>
           <a href="#services" onClick={closeMenu}>Services</a>
+          <a href="#cake-gallery" onClick={closeMenu}>Gallery</a>
           <a href="#menu" onClick={closeMenu}>Menu</a>
           <a href="#flavours" onClick={closeMenu}>Build a Cake</a>
           <a href="#process" onClick={closeMenu}>How it Works</a>
@@ -396,6 +437,23 @@ export default function HomePage() {
               <span className="service-icon" aria-hidden="true">{service.icon}</span>
               <h3>{service.title}</h3>
               <p>{service.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="cake-gallery" id="cake-gallery">
+        <SectionHeading tag="cake gallery" title="Celebration Cakes," accent="Beautifully Finished">
+          A curated look at custom cakes, close-up details, and celebration-ready finishes from Pooja's kitchen.
+        </SectionHeading>
+        <div className="work-gallery stagger-grid">
+          {galleryCakes.map((work) => (
+            <article className={`work-card${work.size ? ` work-card--${work.size}` : ""}`} key={work.title}>
+              <img src={work.image} alt={work.alt} />
+              <div className="work-caption">
+                <span className="script">custom baked</span>
+                <h3>{work.title}</h3>
+              </div>
             </article>
           ))}
         </div>

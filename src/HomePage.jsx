@@ -477,7 +477,7 @@ export default function HomePage() {
           <div><span className="script">your cake so far</span><h3>{selectedCake || "Choose a signature cake"}</h3><p>{selectedFlavour || "Choose a flavour"} <strong>+</strong> {selectedDecoration || "choose a decoration"}</p></div>
           <button
   type="button"
-  className={`button${hasSelection ? "cursor-pointer" : " is-disabled"}`}
+  className={`button${hasSelection ? "" : " is-disabled"} cursor-pointer`}
   disabled={!hasSelection}
   onClick={handleOrder}
 >

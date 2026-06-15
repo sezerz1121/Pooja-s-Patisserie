@@ -255,6 +255,8 @@ export default function QuotePage() {
   };
 
   useLayoutEffect(() => {
+    const sidebarMatch = gsap.matchMedia();
+
     const context = gsap.context(() => {
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (reduceMotion) return;
@@ -287,10 +289,32 @@ export default function QuotePage() {
         });
       }
 
+      sidebarMatch.add("(min-width: 1025px)", () => {
+        const quoteGrid = pageRef.current?.querySelector(".quote-grid");
+        const quoteSidebar = pageRef.current?.querySelector(".quote-sidebar");
+
+        if (!quoteGrid || !quoteSidebar) return undefined;
+
+        const sidebarPin = ScrollTrigger.create({
+          trigger: quoteGrid,
+          start: "top 110px",
+          end: () => `+=${Math.max(0, quoteGrid.offsetHeight - quoteSidebar.offsetHeight)}`,
+          pin: quoteSidebar,
+          pinSpacing: false,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        });
+
+        return () => sidebarPin.kill();
+      });
+
       requestAnimationFrame(() => ScrollTrigger.refresh());
     }, pageRef);
 
-    return () => context.revert();
+    return () => {
+      sidebarMatch.revert();
+      context.revert();
+    };
   }, []);
 
   return (

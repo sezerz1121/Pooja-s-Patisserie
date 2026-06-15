@@ -430,3 +430,119 @@ html, body {
     font-size: 0.95rem;
   }
 }
+
+/* ===================================================================
+   4K / Large-display compatibility
+   Append to the END of index.css.
+
+   Problem: layouts use vw-based clamps and full-width grids without an
+   overall max-width, so on 4K (3840px) and ultrawide monitors the hero
+   text becomes oversized, the cake-orbit image becomes huge, and grids
+   (services, cakes, reviews) stretch into very wide, thin cards.
+
+   Fix: introduce a content max-width that centres everything beyond
+   ~1800px, and add a 1920px+ breakpoint that re-caps font sizes,
+   grid columns, and image dimensions so the layout still feels
+   intentional rather than just "stretched 2x".
+   =================================================================== */
+
+@media (min-width: 1920px) {
+  /* Centre and cap the overall page content so sections don't stretch
+     edge-to-edge on ultrawide / 4K screens */
+  .site-nav,
+  .hero,
+  .about,
+  .services,
+  .menu,
+  .flavours,
+  .process,
+  .testimonials,
+  .order-section,
+  footer {
+    padding-left: calc((100vw - 1800px) / 2 + 4%);
+    padding-right: calc((100vw - 1800px) / 2 + 4%);
+  }
+
+  /* Re-cap hero typography so it doesn't balloon past a comfortable size */
+  .hero h1 { font-size: 5.4rem; }
+  .hero-copy > p { max-width: 620px; font-size: 1.15rem; }
+  .hero-stats strong { font-size: 1.85rem; }
+
+  /* Cap the cake-orbit so it doesn't become enormous on huge screens */
+  .cake-orbit { width: 480px; }
+  .hero-art { min-height: 560px; }
+
+  /* Section headings get a touch more room but stay readable */
+  .section-heading { max-width: 760px; }
+  .section-heading h2 { font-size: 3.2rem; }
+
+  /* Keep card grids from stretching into ultra-wide thin tiles by
+     adding a 5th column where there's room */
+  .service-grid,
+  .review-grid { grid-template-columns: repeat(4, 1fr); gap: 28px; }
+  .card-grid { grid-template-columns: repeat(4, 1fr); gap: 28px; }
+
+  /* About section image gets a max height so it doesn't stretch too tall */
+  .about-photo > img { max-height: 600px; }
+
+  /* Order banner and footer content stay centred and readable */
+  .order-banner { max-width: 1800px; margin: 0 auto; }
+  .footer-grid { max-width: 1800px; margin: 0 auto 50px; }
+  .footer-bottom { max-width: 1800px; margin-left: auto; margin-right: auto; }
+}
+
+@media (min-width: 2560px) {
+  /* True 4K / large ultrawide: widen the content cap slightly and bump
+     base font size a touch for comfortable reading distance */
+  :root { font-size: 18px; }
+
+  .site-nav,
+  .hero,
+  .about,
+  .services,
+  .menu,
+  .flavours,
+  .process,
+  .testimonials,
+  .order-section,
+  footer {
+    padding-left: calc((100vw - 2200px) / 2 + 4%);
+    padding-right: calc((100vw - 2200px) / 2 + 4%);
+  }
+
+  .hero h1 { font-size: 6.2rem; }
+  .cake-orbit { width: 560px; }
+  .hero-art { min-height: 640px; }
+
+  .section-heading h2 { font-size: 3.6rem; }
+
+  .service-grid,
+  .review-grid,
+  .card-grid { grid-template-columns: repeat(4, 1fr); gap: 32px; }
+
+  .about-photo > img { max-height: 680px; }
+
+  .order-banner,
+  .footer-grid,
+  .footer-bottom { max-width: 2200px; }
+}
+
+/* Quote page: same centring treatment for very large screens */
+@media (min-width: 1920px) {
+  .quote-hero,
+  .quote-section {
+    max-width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+  .quote-grid { max-width: 1800px; }
+}
+
+@media (min-width: 2560px) {
+  .quote-hero,
+  .quote-section { max-width: 2200px; }
+  .quote-grid { max-width: 2200px; }
+  .quote-hero h1 { font-size: 4.2rem; }
+}

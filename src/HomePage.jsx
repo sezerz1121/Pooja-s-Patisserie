@@ -463,7 +463,7 @@ export default function HomePage() {
       <section className="menu" id="menu">
         <SectionHeading tag="today's lineup" title="Our" accent="Signature Cakes">Every cake is custom-built around your event. These crowd favourites are a delicious place to begin.</SectionHeading>
         <div className="card-grid stagger-grid">{cakes.map((cake) => <article className={`cake-card${selectedCake === cake.name ? " is-selected" : ""}`} key={cake.name}><div className="card-image"><img src={cake.image} alt={cake.alt} /></div><div className="card-body"><span className="script">{cake.category}</span><h3>{cake.name}</h3><p>{cake.description}</p><div className="price-row"><strong>{selectedCake === cake.name ? "Selected" : "Custom quote"}</strong><button type="button" onClick={() => selectCake(cake.name)} aria-label={`Select ${cake.name}`}>{selectedCake === cake.name ? "✓" : "+"}</button></div></div></article>)}</div>
-        <div className="center reveal-up"><a className="button" onClick={handleOrder}>Request a Quote</a></div>
+        <div className="center reveal-up"><a className="button cursor-pointer" onClick={handleOrder}>Request a Quote</a></div>
       </section>
 
       {/* <Divider /> */}
@@ -477,7 +477,7 @@ export default function HomePage() {
           <div><span className="script">your cake so far</span><h3>{selectedCake || "Choose a signature cake"}</h3><p>{selectedFlavour || "Choose a flavour"} <strong>+</strong> {selectedDecoration || "choose a decoration"}</p></div>
           <button
   type="button"
-  className={`button${hasSelection ? "" : " is-disabled"}`}
+  className={`button${hasSelection ? "cursor-pointer" : " is-disabled"}`}
   disabled={!hasSelection}
   onClick={handleOrder}
 >
@@ -508,7 +508,7 @@ export default function HomePage() {
         <div className="review-grid stagger-grid" aria-label="Customer reviews">{reviews.map(([initial, quote, type]) => <article key={quote}><span className="quote-mark">&ldquo;</span><p>{quote}</p><div className="review-person"><span>{initial}</span><div><strong>Google Review</strong><small>{type}</small></div></div></article>)}</div>
       </section>
 
-      <section className="order-section" id="order"><div className="order-banner reveal-up"><div><h2>Got a celebration coming up?</h2><p>Tell us the date, theme, and guest count. We will confirm availability and pricing &mdash; please reach out at least 7&ndash;10 days ahead (longer for weddings).</p></div><a className="button button--light" onClick={handleOrder}>Submit an Enquiry</a></div></section>
+      <section className="order-section" id="order"><div className="order-banner reveal-up"><div><h2>Got a celebration coming up?</h2><p>Tell us the date, theme, and guest count. We will confirm availability and pricing &mdash; please reach out at least 7&ndash;10 days ahead (longer for weddings).</p></div><a className="button button--light cursor-pointer" onClick={handleOrder}>Submit an Enquiry</a></div></section>
 
       <footer><div className="footer-grid"><div><h3>Pooja's Patisserie</h3><p>Home-based, family-owned custom bakery serving Katy, Houston, and the surrounding suburbs.</p></div><div><h4>Explore</h4><a href="#about">Our Story</a><a href="#services">Services</a><a href="#menu">Menu</a><a href="#flavours">Flavours</a></div><div><h4>Support</h4><a href={orderUrl}>Custom Orders</a><a href="tel:+18325429686">Call Us</a><a href="mailto:poojas.patisserie9@gmail.com">Email Us</a></div><div><h4>Visit the Kitchen</h4><p>26511 Reflection Sky Ct<br />Katy, TX 77494<br />Mon-Sat: 7am-11pm<br />Sun: 9am-9pm</p></div></div><div className="footer-bottom"><span>&copy; 2026 Pooja's Patisserie.</span><span>Made with butter, sugar, and care.</span></div></footer>
     </div>

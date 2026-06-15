@@ -459,15 +459,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      <Divider />
-      <section className="menu" id="menu">
+      {/* <Divider /> */}
+      {/* <section className="menu" id="menu">
         <SectionHeading tag="today's lineup" title="Our" accent="Signature Cakes">Every cake is custom-built around your event. These crowd favourites are a delicious place to begin.</SectionHeading>
         <div className="card-grid stagger-grid">{cakes.map((cake) => <article className={`cake-card${selectedCake === cake.name ? " is-selected" : ""}`} key={cake.name}><div className="card-image"><img src={cake.image} alt={cake.alt} /></div><div className="card-body"><span className="script">{cake.category}</span><h3>{cake.name}</h3><p>{cake.description}</p><div className="price-row"><strong>{selectedCake === cake.name ? "Selected" : "Custom quote"}</strong><button type="button" onClick={() => selectCake(cake.name)} aria-label={`Select ${cake.name}`}>{selectedCake === cake.name ? "✓" : "+"}</button></div></div></article>)}</div>
         <div className="center reveal-up"><a className="button cursor-pointer" onClick={handleOrder}>Request a Quote</a></div>
-      </section>
+      </section> */}
 
       {/* <Divider /> */}
-      <section className="flavours" id="flavours">
+      {/* <section className="flavours" id="flavours">
         <SectionHeading tag="build your cake" title="Flavours &amp;" accent="Decorations">Pick a sponge flavour, then choose your decoration style. Every cake is scratch-baked and built to order.</SectionHeading>
         <div className="flavour-grid stagger-grid">
           <div><h3 className="script">Cake Flavours</h3>{flavours.map(([name, text]) => <button type="button" className={`flavour-item${selectedFlavour === name ? " is-selected" : ""}`} key={name} onClick={() => setSelectedFlavour(name)} aria-pressed={selectedFlavour === name}><span><h4>{name}</h4><p>{text}</p></span><b>{selectedFlavour === name ? "✓" : "+"}</b></button>)}</div>
@@ -484,7 +484,7 @@ export default function HomePage() {
   Enquire About This Cake
 </button>
         </div>
-      </section>
+      </section> */}
 
       <section className="process" id="process" ref={processRef}>
         <SectionHeading tag="how it works" title="From Craving to" accent="Cake Box">

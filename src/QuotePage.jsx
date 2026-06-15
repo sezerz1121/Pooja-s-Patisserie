@@ -237,7 +237,19 @@ export default function QuotePage() {
   };
 
   const removeProduct = (id) => {
+    const fieldByProduct = {
+      cake: "cakeType",
+      flavour: "flavour",
+      decoration: "decoration",
+    };
+
     setProducts((prev) => prev.filter((product) => product.id !== id));
+    if (fieldByProduct[id]) {
+      setForm((prev) => ({
+        ...prev,
+        [fieldByProduct[id]]: "",
+      }));
+    }
   };
 
   const handleFileChange = (event) => {

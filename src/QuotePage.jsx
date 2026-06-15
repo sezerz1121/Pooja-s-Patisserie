@@ -298,7 +298,7 @@ export default function QuotePage() {
       <nav className="site-nav" aria-label="Main navigation">
         <a className="brand" href="#top"><span className="brand-dots" />Pooja's Patisserie</a>
         <div className="nav-links">
-           <a onClick={handleHome}>Home</a><a href="#about">Our Story</a><a href="#services">Services</a><a href="#menu">Menu</a><a href="#process">How it Works</a><a href="#testimonials">Reviews</a>
+           <a href="#top" onClick={handleHome}>Home</a><a href="#about">Our Story</a><a href="#services">Services</a><a href="#menu">Menu</a><a href="#process">How it Works</a><a href="#testimonials">Reviews</a>
         </div>
         <a className="button button--small nav-order" onClick={handleOrder}>Order Now</a>
         <button className={`menu-toggle${menuOpen ? " is-open" : ""}`} type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)}>

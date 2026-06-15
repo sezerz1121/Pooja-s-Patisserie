@@ -387,9 +387,9 @@ export default function HomePage() {
       <nav className="site-nav" aria-label="Main navigation">
         <a className="brand" href="#top"><span className="brand-dots" />Pooja's Patisserie</a>
         <div className="nav-links">
-           <a href="#top">Home</a><a href="#about">Our Story</a><a href="#services">Services</a><a href="#cake-gallery">Gallery</a><a href="#menu">Menu</a><a href="#process">How it Works</a><a href="#testimonials">Reviews</a>
+           <a href="#top">Home</a><a href="#about">Our Story</a><a href="#services">Services</a><a href="#cake-gallery">Portfolio</a><a href="#menu">Menu</a><a href="#process">How it Works</a><a href="#testimonials">Reviews</a>
         </div>
-        <a className="button button--small nav-order" onClick={handleOrder}>Order Now</a>
+        <a className="button button--small nav-order cursor-pointer" onClick={handleOrder}>Order Now</a>
         <button className={`menu-toggle${menuOpen ? " is-open" : ""}`} type="button" aria-label="Toggle navigation" aria-expanded={menuOpen} aria-controls="mobile-navigation" onClick={() => setMenuOpen((open) => !open)}>
           <span /><span /><span />
         </button>
@@ -397,7 +397,7 @@ export default function HomePage() {
           <a href="#top" onClick={closeMenu}>Home</a>
           <a href="#about" onClick={closeMenu}>Our Story</a>
           <a href="#services" onClick={closeMenu}>Services</a>
-          <a href="#cake-gallery" onClick={closeMenu}>Gallery</a>
+          <a href="#cake-gallery" onClick={closeMenu}>Portfolio</a>
           <a href="#menu" onClick={closeMenu}>Menu</a>
           <a href="#flavours" onClick={closeMenu}>Build a Cake</a>
           <a href="#process" onClick={closeMenu}>How it Works</a>
@@ -443,7 +443,7 @@ export default function HomePage() {
       </section>
 
       <section className="cake-gallery" id="cake-gallery">
-        <SectionHeading tag="cake gallery" title="Celebration Cakes," accent="Beautifully Finished">
+        <SectionHeading tag="cake portfolio" title="Celebration Cakes," accent="Beautifully Finished">
           A curated look at custom cakes, close-up details, and celebration-ready finishes from Pooja's kitchen.
         </SectionHeading>
         <div className="work-gallery stagger-grid">
